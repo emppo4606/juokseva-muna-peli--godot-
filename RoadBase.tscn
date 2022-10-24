@@ -1,0 +1,41 @@
+[gd_scene load_steps=9 format=2]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+period = 0.1
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.290196, 0.431373, 0.0470588, 1 )
+albedo_texture = SubResource( 2 )
+
+[sub_resource type="CubeMesh" id=4]
+material = SubResource( 3 )
+size = Vector3( 25, 1, 50 )
+
+[sub_resource type="OpenSimplexNoise" id=5]
+period = 20.0
+
+[sub_resource type="NoiseTexture" id=6]
+seamless = true
+noise = SubResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.258824, 0.2, 0.2, 1 )
+albedo_texture = SubResource( 6 )
+uv1_scale = Vector3( 8, 50, 1 )
+
+[sub_resource type="CubeMesh" id=8]
+material = SubResource( 7 )
+size = Vector3( 8, 1.2, 50 )
+
+[node name="RoadBase" type="Spatial"]
+
+[node name="Grass" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, -25 )
+mesh = SubResource( 4 )
+
+[node name="Sand" type="MeshInstance" parent="Grass"]
+mesh = SubResource( 8 )
